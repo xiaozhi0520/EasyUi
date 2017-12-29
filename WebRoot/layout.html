@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>layout.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="themes/icon.css">
+	<style type="text/css">
+		body{
+			font-size: 14px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+		function urlClick(myTitle,myUrl){
+			//判断title:'菜品管理' tab页是否存在
+			var ifExist = $("#myTabs").tabs("exists",myTitle);
+			if(!ifExist){
+				$("#myTabs").tabs("add",{
+					title:myTitle,
+					closable:true,
+					content:'<iframe frameborder=0 width="100%" height="100%" scrolling="no" src="'+myUrl+'"></iframe>'
+				});
+			}
+			$("#myTabs").tabs("select",myTitle);
+		}
+	</script>
+  </head>
+  
+  <body style="padding:1px;margin:1px">
+     <div class="easyui-layout" style="width:100%;height:100%;margin:0px">
+     <!-- 北部一般只设置高度 不设置宽度 -->
+		<div data-options="region:'north'" style="height:15%">
+			<div style="height:85%; background:url(2.png); height:100%; width:100%;">
+				<div style="height:80%";></div>
+				<div style="text-align: right; width:90%"><a href="" style="color:white; text-decoration:none">安全退出</a></div>
+			</div>
+		</div>
+		<div data-options="region:'west',split:true" title="导航菜单" style="width:18%;">
+			<div class="easyui-accordion" style="width:500px;height:300px;">
+				<div title="权限管理" style="overflow:auto;padding:10px;">
+					<a href="javascript:urlClick('菜品管理','crud.html')" style="text-decoration:none"><img alt="" src="themes/icons/search.png" style="margin-top:5px"> 菜品管理<br/></a>
+					<a href="javascript:urlClick('员工管理','tree.html')" style="text-decoration:none"><img alt="" src="themes/icons/man.png" style="margin-top:5px"> 员工管理</a>
+		        </div>
+		        <div title="系统设置" style="padding:10px;"></div>
+			</div>
+		</div>
+		<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+			<div id="myTabs" class="easyui-tabs" style="width:100%;height:100%">
+				<div title="欢迎使用" style="padding:10px"></div>
+				<div title="帮助" data-options="iconCls:'icon-help',closable:true" style="padding:10px"></div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
